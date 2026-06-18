@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulso GO v0.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Contenedor general de la demo: simula el marco de una app movil. -->
+  <div class="app-shell">
+    <!-- Barra superior fija con acceso rapido al Equipo Motor y notificaciones demo. -->
+    <header class="top-bar">
+      <button class="icon-button" type="button" data-go="team" aria-label="Equipo Motor">
+        <span class="material-symbols-outlined">groups</span>
+      </button>
+      <div class="brand-lockup">
+        <span class="brand-mark">P</span>
+        <span>Pulso GO</span>
+      </div>
+      <button class="icon-button" type="button" data-toast="Demo sin notificaciones reales" aria-label="Notificaciones">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- Pantalla 1: Inicio. La clase "active" indica que esta pantalla parte visible. -->
+      <section class="screen active" id="screen-home" aria-labelledby="home-title">
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" alt="Estudiantes conversando en un campus universitario" />
+          <div class="hero-badge">
+            <span class="material-symbols-outlined filled">favorite</span>
+            Bienestar estudiantil
+          </div>
+        </div>
+
+        <div class="stack-lg">
+          <div class="section-heading">
+            <p class="eyebrow">Check-in preventivo</p>
+            <h1 id="home-title">Revisa cómo va tu día en menos de 1 minuto.</h1>
+            <p>Pulso GO te ayuda a encontrar una ruta de bienestar según cómo te sientes hoy.</p>
+          </div>
+
+          <button class="primary-button" type="button" data-go="checkin">
+            <span class="material-symbols-outlined">fact_check</span>
+            Comenzar check-in
+          </button>
+        </div>
+
+        <div class="benefit-grid" aria-label="Beneficios de Pulso GO">
+          <article class="feature-card wide">
+            <span class="feature-icon purple material-symbols-outlined filled">route</span>
+            <div>
+              <h2>Rutas personalizadas</h2>
+              <p>Recomendaciones según cómo te sientes hoy.</p>
+            </div>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon blue material-symbols-outlined filled">self_improvement</span>
+            <h2>Actividades de bienestar</h2>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon green material-symbols-outlined filled">diversity_3</span>
+            <h2>Apoyo desde la comunidad estudiantil</h2>
+          </article>
+        </div>
+
+        <aside class="note-card">
+          <span class="material-symbols-outlined">info</span>
+          <p>Pulso GO no reemplaza el apoyo profesional. Es una guía inicial para orientarte.</p>
+        </aside>
+
+        <button class="text-link" type="button" data-go="team">Conocer al Equipo Motor</button>
+      </section>
+
+      <!-- Pantalla 2: Check-in. Los botones usan data-field y data-value para que JS guarde respuestas. -->
+      <section class="screen" id="screen-checkin" aria-labelledby="checkin-title">
+        <div class="section-heading">
+          <p class="eyebrow">Tu pulso hoy</p>
+          <h1 id="checkin-title">Tómate un momento para registrar cómo te sientes.</h1>
+          <p>Elige lo que más se acerca a tu día. Esta demo no guarda datos reales.</p>
+        </div>
+
+        <form class="checkin-form" id="checkin-form">
+          <fieldset class="question-card">
+            <legend>¿Cómo te sientes hoy?</legend>
+            <div class="chip-row">
+              <button class="choice-chip selected" type="button" data-field="mood" data-value="bien">Bien</button>
+              <button class="choice-chip" type="button" data-field="mood" data-value="cansado">Cansado/a</button>
+              <button class="choice-chip" type="button" data-field="mood" data-value="estresado">Estresado/a</button>
+              <button class="choice-chip" type="button" data-field="mood" data-value="ansioso">Ansioso/a</button>
+              <button class="choice-chip" type="button" data-field="mood" data-value="desmotivado">Desmotivado/a</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="question-card">
+            <legend>¿Qué necesitas ahora?</legend>
+            <div class="need-grid">
+              <button class="need-option selected" type="button" data-field="need" data-value="descansar">
+                <span class="material-symbols-outlined">bedtime</span>
+                Descansar
+              </button>
+              <button class="need-option" type="button" data-field="need" data-value="moverme">
+                <span class="material-symbols-outlined">directions_run</span>
+                Moverme
+              </button>
+              <button class="need-option" type="button" data-field="need" data-value="hablar">
+                <span class="material-symbols-outlined">forum</span>
+                Hablar con alguien
+              </button>
+              <button class="need-option" type="button" data-field="need" data-value="conectar">
+                <span class="material-symbols-outlined">groups</span>
+                Conectar
+              </button>
+              <button class="need-option urgent" type="button" data-field="need" data-value="urgente">
+                <span class="material-symbols-outlined">support_agent</span>
+                Ayuda urgente
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="question-card">
+            <legend>¿Cómo está tu energía?</legend>
+            <div class="segmented">
+              <button type="button" data-field="energy" data-value="baja">Baja</button>
+              <button class="selected" type="button" data-field="energy" data-value="media">Media</button>
+              <button type="button" data-field="energy" data-value="alta">Alta</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="question-card">
+            <legend>¿Qué tan estresado/a te sientes?</legend>
+            <div class="segmented">
+              <button type="button" data-field="stress" data-value="bajo">Bajo</button>
+              <button class="selected" type="button" data-field="stress" data-value="medio">Medio</button>
+              <button type="button" data-field="stress" data-value="alto">Alto</button>
+            </div>
+          </fieldset>
+
+          <p class="form-alert" id="form-alert" role="status" aria-live="polite"></p>
+
+          <button class="primary-button" type="submit">
+            <span class="material-symbols-outlined">route</span>
+            Ver mi ruta
+          </button>
+        </form>
+      </section>
+
+      <!-- Pantalla 3: Mi Ruta. Su contenido principal se reemplaza dinamicamente desde script.js. -->
+      <section class="screen" id="screen-route" aria-labelledby="route-title">
+        <div class="route-hero" id="route-hero">
+          <span class="route-symbol material-symbols-outlined filled" id="route-icon">spa</span>
+          <p class="eyebrow" id="route-kicker">Mi Ruta</p>
+          <h1 id="route-title">Tu Ruta Reset</h1>
+          <p id="route-message">Parece que necesitas una pausa. Te recomendamos tomar unos minutos para respirar, descansar y bajar la carga mental.</p>
+        </div>
+
+        <div class="action-list" id="route-actions" aria-label="Acciones recomendadas"></div>
+
+        <aside class="note-card" id="route-note">
+          <span class="material-symbols-outlined">verified_user</span>
+          <p>Pulso GO es una guía inicial y no reemplaza atención profesional.</p>
+        </aside>
+
+        <button class="urgent-button hidden" type="button" id="urgent-help">
+          <span class="material-symbols-outlined">phone_in_talk</span>
+          Necesito ayuda ahora
+        </button>
+
+        <button class="primary-button" type="button" data-go="activities">
+          <span class="material-symbols-outlined">event_available</span>
+          Ver actividades recomendadas
+        </button>
+      </section>
+
+      <!-- Pantalla 4: Actividades. Las tarjetas se crean desde el arreglo activities en script.js. -->
+      <section class="screen" id="screen-activities" aria-labelledby="activities-title">
+        <div class="section-heading">
+          <p class="eyebrow">Acciones reales</p>
+          <h1 id="activities-title">Actividades recomendadas</h1>
+          <p>Opciones simples para activar bienestar durante el semestre.</p>
+        </div>
+
+        <div class="activity-list" id="activity-list"></div>
+      </section>
+
+      <!-- Pantalla 5: Campus. Muestra datos simulados y anonimos para la presentacion. -->
+      <section class="screen" id="screen-campus" aria-labelledby="campus-title">
+        <div class="campus-banner">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="Campus universitario con estudiantes caminando" />
+        </div>
+
+        <div class="section-heading">
+          <p class="eyebrow">Datos simulados</p>
+          <h1 id="campus-title">Pulso del campus</h1>
+        </div>
+
+        <aside class="note-card">
+          <span class="material-symbols-outlined">info</span>
+          <p>Estos datos son anónimos y ayudan a planificar actividades según las necesidades reales de los estudiantes.</p>
+        </aside>
+
+        <div class="stats-grid">
+          <article class="stat-card highlight">
+            <span class="material-symbols-outlined">fact_check</span>
+            <strong>128</strong>
+            <span>Check-ins esta semana</span>
+          </article>
+          <article class="stat-card alert">
+            <span class="material-symbols-outlined">monitor_heart</span>
+            <strong>Medio-alto</strong>
+            <span>Estrés promedio</span>
+          </article>
+          <article class="stat-card wide">
+            <span class="material-symbols-outlined">route</span>
+            <div>
+              <small>Ruta más elegida</small>
+              <strong>Movimiento</strong>
+            </div>
+          </article>
+          <article class="stat-card wide">
+            <span class="material-symbols-outlined">group</span>
+            <div>
+              <small>Actividad solicitada</small>
+              <strong>Caminata grupal</strong>
+            </div>
+          </article>
+        </div>
+
+        <article class="next-action-card">
+          <small>Próxima acción sugerida</small>
+          <p>Activar pausa activa y convenio deportivo</p>
+          <button class="secondary-button" type="button" data-go="team">
+            <span class="material-symbols-outlined">groups</span>
+            Ver Equipo Motor
+          </button>
+        </article>
+      </section>
+
+      <!-- Pantalla extra: Equipo Motor, accesible desde Inicio, Campus y el icono superior. -->
+      <section class="screen" id="screen-team" aria-labelledby="team-title">
+        <div class="team-hero">
+          <span class="material-symbols-outlined filled">groups</span>
+          <p class="eyebrow">Participación estudiantil</p>
+          <h1 id="team-title">Equipo Motor Pulso GO</h1>
+          <p>Estudiantes motivados que transforman datos anónimos en acciones reales.</p>
+        </div>
+
+        <p class="body-copy">El Equipo Motor está formado por estudiantes motivados que ayudan a transformar los datos anónimos de Pulso GO en actividades reales, convenios, campañas y solicitudes de apoyo dentro de la institución.</p>
+
+        <div class="team-grid">
+          <article><span class="material-symbols-outlined">query_stats</span>Revisar datos anónimos</article>
+          <article><span class="material-symbols-outlined">celebration</span>Proponer actividades</article>
+          <article><span class="material-symbols-outlined">dashboard_customize</span>Actualizar mural</article>
+          <article><span class="material-symbols-outlined">handshake</span>Gestionar convenios</article>
+          <article><span class="material-symbols-outlined">psychology</span>Coordinar profesionales</article>
+          <article><span class="material-symbols-outlined">hearing</span>Escuchar sugerencias</article>
+        </div>
+
+        <button class="primary-button" type="button" id="join-team">
+          <span class="material-symbols-outlined">how_to_reg</span>
+          Quiero participar
+        </button>
+      </section>
+    </main>
+
+    <!-- Menu inferior principal. Cada boton tiene data-go para indicar a que pantalla navega. -->
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="active" type="button" data-go="home">
+        <span class="material-symbols-outlined filled">home</span>
+        Inicio
+      </button>
+      <button type="button" data-go="checkin">
+        <span class="material-symbols-outlined">fact_check</span>
+        Check-in
+      </button>
+      <button type="button" data-go="route">
+        <span class="material-symbols-outlined">route</span>
+        Mi Ruta
+      </button>
+      <button type="button" data-go="activities">
+        <span class="material-symbols-outlined">fitness_center</span>
+        Actividades
+      </button>
+      <button type="button" data-go="campus">
+        <span class="material-symbols-outlined">sensors</span>
+        Campus
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mensaje temporal reutilizable para feedback de botones. -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
